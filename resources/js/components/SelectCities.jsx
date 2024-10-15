@@ -59,7 +59,7 @@ export default function SelectCities() {
   }
 
   const handleFetchCiudades = (newCities) => {
-    
+
     //si codigo http distinto de 200
     if (newCities.cod !== 200) {
       setErrorWeatherData({ message: `error  ${newCities.cod} No se han podido recuperar datos del tiempo` });
@@ -67,7 +67,7 @@ export default function SelectCities() {
     else {
       //le paso datos por props porque no quiero que se carguen a la vez en showWeather como context 
       setSelectCities(newCities.data);
-      
+
     }
   }
 
@@ -99,21 +99,24 @@ export default function SelectCities() {
   return (
     <>
       <div id="selectCity">
-        {selectCities ===null ?
-          <select name="select" value={selectCity} onChange={handleChange}>
-            <option value="Madrid">Madrid</option>
-            <option value="Zaragoza">Zaragoza</option>
-            <option value="Huelva">Huelva</option>
-            <option value="Toledo">Toledo</option>
-            <option value="Murcia">Murcia</option>
-          </select>:
-          <select>
-          {selectCities.map((option, index) => (
-            <option key={index} value={option.nombre}>
-              {option.nombre}
-            </option>
-          ))}
-        </select>}
+        <select name="select" value={selectCity} onChange={handleChange}>
+          {selectCities === null ?
+            <>
+              <option value="Madrid">Madrid</option>
+              <option value="Zaragoza">Zaragoza</option>
+              <option value="Huelva">Huelva</option>
+              <option value="Toledo">Toledo</option>
+              <option value="Murcia">Murcia</option>
+            </>
+            :
+            selectCities.map((option, index) => (
+              <>
+                <option key={index} value={option.nombre}>
+                  {option.nombre}
+                </option>
+              </>
+            ))}
+        </select>
         <>
           <form>
             <label htmlFor="search"></label>
