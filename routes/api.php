@@ -18,6 +18,10 @@ use App\Models\CiudadUsuario;
 |
 */
 
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
 Route::get('/ciudades', function () {
     $ciudades = CiudadUsuario::where('idUsuario', '=', '1')->get();
 
@@ -28,4 +32,5 @@ Route::get('/ciudades', function () {
 
     return response()->json($ciudades, 200);
 });
+//->middleware('auth.basic');
 
