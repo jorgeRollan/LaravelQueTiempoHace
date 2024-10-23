@@ -17,11 +17,11 @@ use App\Models\CiudadUsuario;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
+/*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+*/
 Route::get('/ciudades', function () {
     $ciudades = CiudadUsuario::where('idUsuario', '=', '1')->get();
 

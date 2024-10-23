@@ -7,12 +7,13 @@ const FetchUrl = async (url, method, header, handleFunction) => {
       method : method,
       header : header
     });
-    await handleFunction(response.data);
-  } 
-  //asntes trataba aqui los errores del fetch pero los he propagado arriba para que los gestione el handle de select o ubicacion
+    if(await response.data.cod===200){
+      handleFunction(response.data);
+    }
+    else throw new Error(`Error en la obtencion url ${response.data.cod}`);
+  }
   catch (error) {
-      let cod = error.status;
-      handleFunction({cod});
+      window.alert(error.message);
   }
 };
 
