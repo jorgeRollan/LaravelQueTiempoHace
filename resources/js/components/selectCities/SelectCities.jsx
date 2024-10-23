@@ -4,16 +4,16 @@ import ShowWeather from "../ShowWeather";
 import FormSearchCity from "./FormSearchCity"
 import Select from "./Select";
 import FetchCiudades from "../../api/FetchCiudades";
-import CleanContext from '../../context/Contexts';
-import DataContext from "../../context/Contexts";
-import SearchCityContext from "../../context/Contexts"
-import SelectCityContext from "../../context/Contexts";
+import {CleanContext} from '../../context/Contexts';
+import {DataContext} from "../../context/Contexts";
+import {SearchCityContext} from "../../context/Contexts"
+import {SelectCityContext} from "../../context/Contexts";
 import DataFallback from "../DataFallback";
 
 
 export default function SelectCities() {
   const [weatherData, setWeatherData] = useState(null);
-  const [selectCity, setSelectCity] = useState("Toledo");
+  const [selectCity, setSelectCity] = useState(null);
   const [selectCities, setSelectCities] = useState(null);
   const [fetchCiudades, setFetchCiudades] = useState(true);
   const [loading, setLoading] = useState(true);
@@ -29,7 +29,7 @@ export default function SelectCities() {
   }
 
   const handleFetchCiudades = (newCities) => {
-    setSelectCities(newCities.data);
+    setSelectCities(newCities);
   }
 
   //use effect para llamar a fetch cuando cambia el SelectCity
@@ -41,21 +41,23 @@ export default function SelectCities() {
   }, [selectCity]);
 
   useEffect(() => {
-      FetchCiudades(handleFetchCiudades);
+    if (fetchCiudades) {
+      FetchCiudades('http://localhost:8000/api/ciudades', "GET", null, handleFetchCiudades);
       setFetchCiudades(false);
+    }
   }, [fetchCiudades]);
 
   return (
     <>
       <div id="selectCity">
         <>
-          <SelectCityContext.Provider value={{ selectCity, setSelectCity,selectCities, loading, setLoading }}>
+          <SelectCityContext.Provider value={{ selectCity, setSelectCity, selectCities, setLoading }}>
             <Select />
           </SelectCityContext.Provider>
         </>
 
         <>
-          <SearchCityContext.Provider value={{ selectCity, setSelectCity, loading, setLoading }}>
+          <SearchCityContext.Provider value={{ selectCity, setSelectCity,setLoading }}>
             <FormSearchCity />
           </SearchCityContext.Provider>
         </>

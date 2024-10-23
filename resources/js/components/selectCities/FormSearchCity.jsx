@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import SearchCityContext from "../../context/Contexts"
+import {SearchCityContext} from "../../context/Contexts"
 
 
 export default function FormSearchCities() {

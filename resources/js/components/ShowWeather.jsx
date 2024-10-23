@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import DataContext from "../context/Contexts"
+import {DataContext} from "../context/Contexts"
 
 const ShowWeather = () => {
   const weatherData = useContext(DataContext);

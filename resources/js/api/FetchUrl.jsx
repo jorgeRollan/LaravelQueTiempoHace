@@ -7,7 +7,7 @@ const FetchUrl = async (url, method, header, handleFunction) => {
       method : method,
       header : header
     });
-    if(await response.data.cod===200){
+    if(response.data.cod===200){
       handleFunction(response.data);
     }
     else throw new Error(`Error en la obtencion url ${response.data.cod}`);

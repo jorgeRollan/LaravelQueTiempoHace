@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import SelectCities from './components//selectCities/SelectCities';
 import CityLocation from './components/CityLocation';
-import CleanContext from './context/Contexts';
+import { CleanContext } from './context/Contexts';
+import Mapa from './components/Mapa';
+
 import './App.css';
 
 function App() {
@@ -15,7 +17,6 @@ function App() {
   return (
     <div>
       <h1>UNIT 1. API Weather</h1>
-
       {clean ?
         <button onClick={() => setClean(false)}>Clima por ubicación</button>
         : <CityLocation />}
@@ -23,6 +24,7 @@ function App() {
       <CleanContext.Provider value={{ clean, setClean }}>
         <SelectCities />
       </CleanContext.Provider>
+      <Mapa/>
     </div>
   );
 }

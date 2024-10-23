@@ -1,10 +1,10 @@
 import { useContext } from "react";
 
-import SelectContext from "../../context/Contexts"
+import {SelectCityContext} from "../../context/Contexts"
 
 
 export default function SelectCities() {
-    let { selectCity, setSelectCity, selectCities, setLoading } = useContext(SelectContext);
+    let { selectCity, setSelectCity, selectCities, setLoading } = useContext(SelectCityContext);
 
     const handleChange = (event) => {
         let city = event.target.value;

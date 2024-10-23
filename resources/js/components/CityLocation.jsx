@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import FetchUrl from '../api/FetchUrl';
 import ShowWeather from "./ShowWeather";
-import DataContext from "../context/Contexts"
+import {DataContext} from "../context/Contexts"
 import DataFallback from "./DataFallback";
 
 export default function CityLocation() {
