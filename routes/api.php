@@ -1,36 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Models\Usuario;
-use App\Models\CiudadUsuario;
+use App\Http\Controllers\WeatherController;
 
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-/*
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-*/
-Route::get('/ciudades', function () {
-    $ciudades = CiudadUsuario::where('idUsuario', '=', '1')->get();
-
-    // Verifica si se obtienen resultados
-    if ($ciudades->isEmpty()) {
-        return response()->json(['message' => 'No se encontraron ciudades'], 404);
-    }
-
-    return response()->json($ciudades, 200);
-});
-//->middleware('auth.basic');
-
+// Rutas de llamada a la api de openWeather
+Route::get('/weatherLocation', [WeatherController::class, 'getWeatherByLocation']);
+Route::get('/weatherForecast', [WeatherController::class, 'getWeatherForecast']);
+Route::get('/weatherForecastHourly', [WeatherController::class, 'getWeatherForecastHourly']);
+Route::get('/weatherCity', [WeatherController::class, 'getWeatherByCity']);
+Route::get('/geoCountry', [WeatherController::class, 'getLocationCountry']);
