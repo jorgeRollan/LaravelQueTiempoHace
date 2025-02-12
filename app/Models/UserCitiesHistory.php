@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserCitiesHistory extends Model
 {
-    protected $table ='user_Cities_history';
+    protected $table ='user_cities_history';
     public $timestamps = true;
     use HasFactory;
-    protected $fillable = ['user_id', 'city_id', 'date'];
 }

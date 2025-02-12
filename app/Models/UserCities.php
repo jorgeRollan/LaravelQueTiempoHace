@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserCities extends Model
 {
-    protected $table ='user_Cities';
+    protected $table ='user_cities';
     public $timestamps = false;
     use HasFactory;
 }
